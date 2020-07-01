@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User do
-  describe "validations" do
+  describe 'validations' do
     it { should validate_presence_of(:email) }
     it { should validate_uniqueness_of(:email) }
     it { should validate_presence_of(:first_name) }
@@ -13,7 +15,7 @@ RSpec.describe User do
     it { should define_enum_for(:role) }
   end
 
-  describe "user roles" do
+  describe 'user roles' do
     it 'user can be created as a default user' do
       user = User.create(first_name: 'Django',
                          last_name: 'Unchained',
@@ -23,11 +25,11 @@ RSpec.describe User do
                          role: 0)
 
       expect(user).to be_valid
-      expect(user.role).to eq("default")
+      expect(user.role).to eq('default')
       expect(user.default?).to be_truthy
     end
 
-    it "user can be created as an admin" do
+    it 'user can be created as an admin' do
       user = User.create(first_name: 'Django',
                          last_name: 'Unchained',
                          email: 'cool',
@@ -36,11 +38,11 @@ RSpec.describe User do
                          role: 1)
 
       expect(user).to be_valid
-      expect(user.role).to eq("admin")
+      expect(user.role).to eq('admin')
       expect(user.admin?).to be_truthy
     end
 
-    it "user defaulted to default user" do
+    it 'user defaulted to default user' do
       user = User.create(first_name: 'Django',
                          last_name: 'Unchained',
                          email: 'cool',
@@ -48,19 +50,19 @@ RSpec.describe User do
                          password: 'django')
 
       expect(user).to be_valid
-      expect(user.role).to eq("default")
+      expect(user.role).to eq('default')
       expect(user.default?).to be_truthy
     end
 
     it 'user can be converted from default to admin' do
-     user = User.create(first_name: 'Django',
+      user = User.create(first_name: 'Django',
                          last_name: 'Unchained',
                          email: 'cool',
                          address: 'wherever',
                          password: 'django')
 
       expect(user).to be_valid
-      expect(user.role).to eq("default")
+      expect(user.role).to eq('default')
       expect(user.default?).to be_truthy
 
       user.admin!
@@ -68,7 +70,7 @@ RSpec.describe User do
     end
   end
 
-  describe "relationships" do
+  describe 'relationships' do
     it { should have_many(:orders) }
     it { should respond_to(:orders) }
   end

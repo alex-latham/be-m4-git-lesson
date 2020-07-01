@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::ItemsController < Admin::BaseController
   def index
     @items = Item.all
@@ -17,7 +19,7 @@ class Admin::ItemsController < Admin::BaseController
       flash[:success] = "#{@item.title} successfully created!"
       redirect_to admin_items_path
     else
-      flash[:notice] = "One or more of your fields are invalid!"
+      flash[:notice] = 'One or more of your fields are invalid!'
       render :new
     end
   end
@@ -32,7 +34,7 @@ class Admin::ItemsController < Admin::BaseController
       flash[:success] = "#{item.title} has been updated!"
       redirect_to admin_items_path
     else
-      flash[:error] = "Something went wrong, please try again."
+      flash[:error] = 'Something went wrong, please try again.'
       redirect_to edit_admin_item_path
     end
   end

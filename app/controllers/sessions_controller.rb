@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     user = User.find_by(email: params[:session][:email])
@@ -9,7 +10,7 @@ class SessionsController < ApplicationController
       flash_login(user)
       redirect(user)
     else
-      flash[:error] = "Unable to log in, please try again."
+      flash[:error] = 'Unable to log in, please try again.'
       render :new
     end
   end
@@ -35,6 +36,6 @@ class SessionsController < ApplicationController
   end
 
   def authenticated?(user, params)
-    user && user.authenticate(params[:session][:password])
+    user&.authenticate(params[:session][:password])
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,63 +12,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108000258) do
-
+ActiveRecord::Schema.define(version: 20_171_108_000_258) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "categories", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug"
+  create_table 'categories', force: :cascade do |t|
+    t.string 'title'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'slug'
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.decimal "price"
-    t.string "image_file_name"
-    t.integer "image_file_size"
-    t.string "image_content_type"
-    t.datetime "image_uploaded_at"
-    t.integer "status", default: 0
-    t.bigint "category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "image_url"
-    t.index ["category_id"], name: "index_items_on_category_id"
+  create_table 'items', force: :cascade do |t|
+    t.string 'title'
+    t.text 'description'
+    t.decimal 'price'
+    t.string 'image_file_name'
+    t.integer 'image_file_size'
+    t.string 'image_content_type'
+    t.datetime 'image_uploaded_at'
+    t.integer 'status', default: 0
+    t.bigint 'category_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'image_url'
+    t.index ['category_id'], name: 'index_items_on_category_id'
   end
 
-  create_table "order_items", force: :cascade do |t|
-    t.bigint "item_id"
-    t.bigint "order_id"
-    t.decimal "price"
-    t.index ["item_id"], name: "index_order_items_on_item_id"
-    t.index ["order_id"], name: "index_order_items_on_order_id"
+  create_table 'order_items', force: :cascade do |t|
+    t.bigint 'item_id'
+    t.bigint 'order_id'
+    t.decimal 'price'
+    t.index ['item_id'], name: 'index_order_items_on_item_id'
+    t.index ['order_id'], name: 'index_order_items_on_order_id'
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.integer "status", default: 0
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_orders_on_user_id"
+  create_table 'orders', force: :cascade do |t|
+    t.integer 'status', default: 0
+    t.bigint 'user_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['user_id'], name: 'index_orders_on_user_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "first_name"
-    t.string "last_name"
-    t.text "address"
-    t.integer "role", default: 0
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'users', force: :cascade do |t|
+    t.string 'email'
+    t.string 'first_name'
+    t.string 'last_name'
+    t.text 'address'
+    t.integer 'role', default: 0
+    t.string 'password_digest'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  add_foreign_key "items", "categories"
-  add_foreign_key "order_items", "items"
-  add_foreign_key "order_items", "orders"
-  add_foreign_key "orders", "users"
+  add_foreign_key 'items', 'categories'
+  add_foreign_key 'order_items', 'items'
+  add_foreign_key 'order_items', 'orders'
+  add_foreign_key 'orders', 'users'
 end

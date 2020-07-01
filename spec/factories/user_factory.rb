@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :user do
     sequence :first_name do
@@ -23,7 +25,3 @@ FactoryBot.define do
     role 0
   end
 end
-
-
-
-

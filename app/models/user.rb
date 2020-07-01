@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_many  :orders
   validates :email,
@@ -7,7 +9,6 @@ class User < ApplicationRecord
             :role,
             presence: true
 
-  validates_uniqueness_of :email
   has_secure_password
-  enum role: ["default", "admin"]
+  enum role: %w[default admin]
 end

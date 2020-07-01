@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Cart, type: :model do
   subject { Cart.new({}) }
 
-  describe "instance methods" do
-    it "#add_item" do
+  describe 'instance methods' do
+    it '#add_item' do
       subject.add_item(1)
       subject.add_item(2)
 
-      expect(subject.contents).to eq({'1' => 1, "2" => 1})
+      expect(subject.contents).to eq({ '1' => 1, '2' => 1 })
     end
 
-    it "#cart_total_price" do
+    it '#cart_total_price' do
       category = create(:category)
-      item  = create(:item, price: 2, category: category)
+      item = create(:item, price: 2, category: category)
       item2 = create(:item, price: 10, category: category)
       subject.add_item(item.id)
       subject.add_item(item.id)
@@ -26,25 +28,25 @@ RSpec.describe Cart, type: :model do
       subject.add_item(1)
       subject.add_item(2)
 
-      expect(subject.contents).to eq({'1' => 1, "2" => 1})
+      expect(subject.contents).to eq({ '1' => 1, '2' => 1 })
 
       subject.decrease_quantity(2)
 
-      expect(subject.contents).to eq({'1' => 1})
+      expect(subject.contents).to eq({ '1' => 1 })
 
       subject.add_item(2)
       subject.add_item(2)
 
-      expect(subject.contents).to eq({'1' => 1, "2" => 2})
+      expect(subject.contents).to eq({ '1' => 1, '2' => 2 })
 
       subject.decrease_quantity(2)
 
-      expect(subject.contents).to eq({'1' => 1, "2" => 1})
+      expect(subject.contents).to eq({ '1' => 1, '2' => 1 })
     end
 
     it '#retrieve_items' do
       category = create(:category)
-      item  = create(:item, price: 2, category: category)
+      item = create(:item, price: 2, category: category)
       item2 = create(:item, price: 10, category: category)
       subject.add_item(item.id)
       subject.add_item(item2.id)
@@ -68,16 +70,16 @@ RSpec.describe Cart, type: :model do
       subject.add_item(1)
       subject.add_item(2)
 
-      expect(subject.contents).to eq({'1' => 4, "2" => 1})
+      expect(subject.contents).to eq({ '1' => 4, '2' => 1 })
 
       subject.remove_item(1)
 
-      expect(subject.contents).to eq({"2" => 1})
+      expect(subject.contents).to eq({ '2' => 1 })
     end
 
     it '#item_subtotal' do
       category = create(:category)
-      item  = create(:item, price: 2, category: category)
+      item = create(:item, price: 2, category: category)
       subject.add_item(item.id)
       subject.add_item(item.id)
 

@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "Visitor visits category show page" do
+RSpec.feature 'Visitor visits category show page' do
   let!(:category1) { create(:category) }
   let!(:category2) { create(:category) }
-  let!(:item1) { create(:item, category: category1)}
-  let!(:item2) { create(:item, category: category1)}
-  let!(:item3) { create(:item, category: category2)}
-  let!(:item4) { create(:item, category: category2)}
+  let!(:item1) { create(:item, category: category1) }
+  let!(:item2) { create(:item, category: category1) }
+  let!(:item3) { create(:item, category: category2) }
+  let!(:item4) { create(:item, category: category2) }
 
-  scenario "and sees items related to that category" do
+  scenario 'and sees items related to that category' do
     visit category_path(category1.slug)
 
     expect(current_path).to eq("/#{category1.slug}")
