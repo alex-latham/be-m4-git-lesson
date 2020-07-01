@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   get '/', to: 'landing#index', as: 'root'
 
@@ -54,8 +56,7 @@ Rails.application.routes.draw do
 
   # categories
   get '/categories', to: 'categories#index'
-  get '/:category',  to: 'categories#show', param: :slug, as: "category"
-
+  get '/:category',  to: 'categories#show', param: :slug, as: 'category'
 
   # RESOURCES -> previously:
 

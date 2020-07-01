@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrderItem < ApplicationRecord
   belongs_to :item
   belongs_to :order
@@ -10,7 +12,7 @@ class OrderItem < ApplicationRecord
   end
 
   def self.item_quantity(order_id, item_id)
-    where("order_id = ? AND item_id = ?", order_id, item_id).count
+    where('order_id = ? AND item_id = ?', order_id, item_id).count
   end
 
   def self.item_subtotal(order_id, item_id)

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "As a non admin" do
-  context "as a visitor" do
+RSpec.feature 'As a non admin' do
+  context 'as a visitor' do
     it 'I visit admin/dashboard and receive status 404' do
       visit admin_dashboard_path
 
@@ -10,14 +12,14 @@ RSpec.feature "As a non admin" do
     end
   end
 
-  context "as an authenticated user" do
+  context 'as an authenticated user' do
     it 'I visit admin/dashboard and receive status 404' do
       user = User.create(first_name: 'Django',
-                          last_name: 'Unchained',
-                          email: 'cool',
-                          address: 'wherever',
-                          password: 'django',
-                          role: 0)
+                         last_name: 'Unchained',
+                         email: 'cool',
+                         address: 'wherever',
+                         password: 'django',
+                         role: 0)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit admin_dashboard_path

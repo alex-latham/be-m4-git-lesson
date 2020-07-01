@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Order < ApplicationRecord
   belongs_to :user
   has_many   :order_items
@@ -5,14 +7,14 @@ class Order < ApplicationRecord
 
   validates :status, presence: true
 
-  enum status: %w(ordered paid cancelled completed)
+  enum status: %w[ordered paid cancelled completed]
 
   def format_date(date)
     date.strftime('%m/%d/%Y at %l:%M %P')
   end
 
   def create_order_items(cart)
-    items = Item.find(cart.keys.map { |key| key.to_i })
+    items = Item.find(cart.keys.map(&:to_i))
     items.each do |item|
       quantity = cart[item.id.to_s].to_i
       until quantity == 0
@@ -23,18 +25,18 @@ class Order < ApplicationRecord
   end
 
   def self.total_ordered
-    where(status: 0).count
+    where(status: 0).length
   end
 
   def self.total_paid
-    where(status: 1).count
+    where(status: 1).length
   end
 
   def self.total_cancelled
-    where(status: 2).count
+    where(status: 2).length
   end
 
   def self.total_completed
-    where(status: 3).count
+    where(status: 3).length
   end
 end

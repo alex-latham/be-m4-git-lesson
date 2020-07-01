@@ -1,5 +1,6 @@
-class Admin::UsersController < Admin::BaseController
+# frozen_string_literal: true
 
+class Admin::UsersController < Admin::BaseController
   def show
     @admin = User.find(params[:id])
   end
@@ -12,10 +13,10 @@ class Admin::UsersController < Admin::BaseController
     @admin = User.find(params[:id])
     @admin.update(user_params)
     if @admin.save
-      flash[:success] = "Profile successfully updated!"
+      flash[:success] = 'Profile successfully updated!'
       redirect_to admin_user_path(@admin)
     else
-      flash[:notice] = "One or more of your credentials have already been taken!"
+      flash[:notice] = 'One or more of your credentials have already been taken!'
       render :edit
     end
   end

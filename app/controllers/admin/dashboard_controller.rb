@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::DashboardController < Admin::BaseController
   before_action :require_admin
   helper_method :cancel?

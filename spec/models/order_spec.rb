@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Order do
-  describe "validations" do
-    it{ should validate_presence_of(:status) }
+  describe 'validations' do
+    it { should validate_presence_of(:status) }
     it { should define_enum_for(:status) }
   end
 
@@ -13,45 +15,45 @@ RSpec.describe Order do
     it { should respond_to(:items) }
   end
 
-  describe "class methods" do
-    it ".total_ordered" do
+  describe 'class methods' do
+    it '.total_ordered' do
       user = create(:user)
-      create(:order, status:0, user: user)
-      create(:order, status:0, user: user)
+      create(:order, status: 0, user: user)
+      create(:order, status: 0, user: user)
 
       expect(Order.total_ordered).to eq(2)
     end
 
-    it ".total_paid" do
+    it '.total_paid' do
       user = create(:user)
-      create(:order, status:1, user: user)
-      create(:order, status:1, user: user)
+      create(:order, status: 1, user: user)
+      create(:order, status: 1, user: user)
 
       expect(Order.total_paid).to eq(2)
     end
 
-    it ".total_cancelled" do
+    it '.total_cancelled' do
       user = create(:user)
-      create(:order, status:2, user: user)
-      create(:order, status:2, user: user)
+      create(:order, status: 2, user: user)
+      create(:order, status: 2, user: user)
 
       expect(Order.total_cancelled).to eq(2)
     end
 
-    it ".total_completed" do
+    it '.total_completed' do
       user = create(:user)
-      create(:order, status:3, user: user)
-      create(:order, status:3, user: user)
+      create(:order, status: 3, user: user)
+      create(:order, status: 3, user: user)
 
       expect(Order.total_completed).to eq(2)
     end
   end
 
-  describe "instance methods" do
-    it "#formate_date" do
+  describe 'instance methods' do
+    it '#formate_date' do
       user  = create(:user)
       order = create(:order, user: user)
-      comparison = order.format_date(order.created_at).split("/")
+      comparison = order.format_date(order.created_at).split('/')
 
       expect(comparison[0].to_i).to be_between(0, 13).exclusive
       expect(comparison[1].to_i).to be_between(0, 32).exclusive
@@ -59,13 +61,13 @@ RSpec.describe Order do
       expect(comparison[2].to_i).to be_kind_of(Integer)
     end
 
-    it "#create_order_items" do
+    it '#create_order_items' do
       user  = create(:user)
       order = create(:order, user: user)
       category = create(:category)
       item = create(:item, category: category)
       item = create(:item, category: category)
-      cart = {"1" => 2}
+      cart = { '1' => 2 }
       order.create_order_items(cart)
 
       expect(order.items.count).to eq(2)
